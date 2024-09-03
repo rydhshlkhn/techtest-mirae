@@ -1,0 +1,45 @@
+### GET Request - Mendapatkan semua data saham
+GET http://localhost:8080/api/v1/stock
+Content-Type: application/json
+
+###
+
+### GET Request - Mendapatkan detail saham
+GET http://localhost:8000/api/v1/stock/7
+Content-Type: application/json
+
+###
+
+### POST Request - Menambahkan data saham baru
+POST http://localhost:8000/api/v1/stock
+Content-Type: application/json
+
+{
+    "name": "Mahaka Media Tbk.",
+    "code": "ABBX",
+    "price": 500,
+    "frequency": 1,
+    "volume": 1200
+}
+
+###
+
+### PUT Request - Update data  saham
+PUT http://localhost:8000/api/v1/stock/7
+Content-Type: application/json
+
+{
+    "name": "Mahaka Media Tbk.",
+    "code": "ABBA",
+    "price": 2000000,
+    "frequency": 1,
+    "volume": 10000
+}
+
+###
+
+### DELETE Request - Delete data  saham
+DELETE http://localhost:8000/api/v1/stock/6
+Content-Type: application/json
+
+###
