@@ -20,7 +20,7 @@ RUN go test ./delivery/resthandler ./usecase ./repository -v
 ENV GO111MODULE=on CGO_ENABLED=0
 RUN go build -a -gcflags=all="-l -B" -ldflags "-s -w" -o ./mirae-app cmd/main.go
 RUN upx -9 --lzma /mirae/mirae-app
-RUN echo 'DATABASE_URL=postgres://mirae-user:mirae-password@tcp(db:5432)/mirae?sslmode=disable&TimeZone=Asia/Jakarta' > /mirae/temp.conn
+RUN echo 'DATABASE_URL=postgres://mirae-user:mirae-password@db:5432/mirae?sslmode=disable&TimeZone=Asia/Jakarta' > /mirae/temp.conn
 
 FROM gcr.io/distroless/static:latest AS runtimeStage
 WORKDIR /app

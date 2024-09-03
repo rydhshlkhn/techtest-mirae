@@ -7,6 +7,7 @@ import (
 	"github.com/rydhshlkhn/techtest-mirae/infra"
 	"github.com/rydhshlkhn/techtest-mirae/repository"
 	"github.com/rydhshlkhn/techtest-mirae/usecase"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func main() {
@@ -16,9 +17,11 @@ func main() {
 		EnablePrintRoutes: true,
 	})
 
+	app.Use(logger.New())
+
 	stockRepo := repository.NewStockRepository(db)
 	stockUsecase := usecase.NewStockUsecase(stockRepo)
 	resthandler.NewStockHandler(app, stockUsecase)
 
-	app.Listen(":8000")
+	app.Listen(":8080")
 }
