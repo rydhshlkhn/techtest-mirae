@@ -1,15 +1,3 @@
-### GET Request - Mendapatkan semua data saham
-GET http://localhost:8080/api/v1/stock
-Content-Type: application/json
-
-###
-
-### GET Request - Mendapatkan detail saham
-GET http://localhost:8080/api/v1/stock/1
-Content-Type: application/json
-
-###
-
 ### POST Request - Menambahkan data saham baru
 POST http://localhost:8080/api/v1/stock
 Content-Type: application/json
@@ -24,8 +12,20 @@ Content-Type: application/json
 
 ###
 
+### GET Request - Mendapatkan semua data saham
+GET http://localhost:8080/api/v1/stock
+Content-Type: application/json
+
+###
+
+### GET Request - Mendapatkan detail saham
+GET http://localhost:8080/api/v1/stock/1
+Content-Type: application/json
+
+###
+
 ### PUT Request - Update data  saham
-PUT http://localhost:8080/api/v1/stock/7
+PUT http://localhost:8080/api/v1/stock/1
 Content-Type: application/json
 
 {
@@ -39,7 +39,7 @@ Content-Type: application/json
 ###
 
 ### DELETE Request - Delete data  saham
-DELETE http://localhost:8080/api/v1/stock/6
+DELETE http://localhost:8080/api/v1/stock/1
 Content-Type: application/json
 
 ###

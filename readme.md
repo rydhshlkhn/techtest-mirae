@@ -16,6 +16,7 @@ Ini adalah aplikasi REST API sederhana untuk pengelolaan data saham yang dibangu
     - [Get Stock by ID](#get-stock-by-id)
     - [Update Stock](#update-stock)
     - [Delete Stock](#delete-stock)
+- [Kontribusi](#kontribusi)
 - [Contoh Penggunaan](#contoh-penggunaan)
 
 ## Jawaban Soal No 2
@@ -215,3 +216,9 @@ $ curl -X GET http://localhost:8080/api/v1/stock/1
 ## Kontribusi
 
 Kontribusi sangat diterima! Silakan fork repository ini dan ajukan pull request untuk perbaikan atau penambahan fitur.
+
+## Contoh Penggunaan
+Penggunan  bisa dengan beberapa cara berikut:
+1. Untuk Peengujian AP bisa menggunakan CURL dengan  contoh request [Disini](#endpoint-api)
+2. Postman
+3. buka file `stock.rest` dan klik beberapa API yang ada disana. Pastikan sudah menginstall extension `REST Client` by Huachao Mao
