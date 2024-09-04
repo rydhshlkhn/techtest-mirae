@@ -20,6 +20,19 @@ Ini adalah aplikasi REST API sederhana untuk pengelolaan data saham yang dibangu
 
 ## Jawaban Soal No 2
 
+### Soal
+Anda memiliki program yang mengambil data harga saham setiap 1 detik dan menyimpannya dalam database yang anda buat pada Soal 1. Namun, program tersebut sering mengalami keterlambatan (lag) karena banyaknya permintaan yang masuk. Bagaimana cara mengoptimalkan program tersebut agar dapat menangani lebih banyak permintaan dengan waktu respons yang lebih cepat?
+
+### Jawaban
+Untuk mempercepat proses  pengambilan data dan penyimpanan data bisa memanfaatkan fitur concurrency di golang. goroutine bisa digunakan untuk memproses dua proses teresebut secara parallel.
+Channel dibutuhkan disini untuk kebutuhan penerimaan dan pengiriman data. Pengambilan data  akan  di proses di  goroutine untuk menyiapkan data yang  sesuai dengan  kebutuhan penyimpanan  di database. Data tersebut dikirim ke channel yang sudah disiapkan, sedangkan goroutine penyimpanan data ke database akan menyimipan data begitu menerima  data dari channel. **Karena  channel proses pengiriman dan penerimaan data melalui channel bersifat blocking**, kita bisa memanfaatkan **buffered channel** dengan jumlah buffer disesuaikan dengan kebutuhan, sehinngga proses pengiriman data di channel akan tetap asynchronous selama masih ada slot di channel.
+
+Caching bisa digunakan tergantung seberapa cepat perubahan data, jika perubahan data tidak teerlalu seering,  kita bisa memanfaatkan metode Chaching, agar proses mengambli data dari service external tidak diperlukan lagi  selama cache belum expired. Jadi ketika ada  permintaan dalam waktu yang singkat tidak prelu lagi mengambil data dari service eexternal.
+
+Load balancng bisa diterapkan jika inifrastruktur mendukung. kita bisa menggunakan load  balancing  secara  vertikal maupun horizontal. jika secara  vertikal tidak memungkinkan kita bisa menerapkannya secara horizontal, dimana kita menambah instance aplikasi untuk menangani banyak peermintaan.
+
+**Namun dari beberapa  solusi diatas**, menurut ada solusi yang lebih baik yaitu dengan menggunakan Event-Driven Architecture. Dimana alih-alih kita mengambil data setiap detik  yang belum tentu ada data pada  saat itu, lebih baik kita mengambil data hanya jika memang benar-benar ada  data baru. kita bisa menggunakan message broker seperti Kafka, RabitMQ, dll unutk mengelola event. Pada opsi ini  event (perubahan data)  dikirimkan ke message  broker. lalu kita menyediakan program worker(subscriber) yang memproses event-tersebut. prosesnya bisa memakai bebrapa pendekatan  di solusi sebelumnya menggunakan goroutine dan  channel. jika data yang diterima perlu diproses terlebih dahulu sebelum disimpan di database  kita bisa memprosesnya di beberapa goroutine dan memanfaatkan channel untuk  komunikasi antar  goroutine.
+
 
 ## Persyaratan
 
